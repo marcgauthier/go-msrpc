@@ -3,7 +3,7 @@ package record
 import (
     "testing"
 
-    "github.com/miekg/dns"
+    "github.com/oiweiwei/go-msrpc/internal/dns"
 )
 
 // These cases form a regression baseline for extracting the DNS RR types
