@@ -3,7 +3,7 @@ package goidentity
 import (
 	"bytes"
 	"encoding/gob"
-	"github.com/hashicorp/go-uuid"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/uuid"
 	"time"
 )
 
