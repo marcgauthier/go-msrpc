@@ -23,7 +23,7 @@ import (
 	"github.com/oiweiwei/go-msrpc/msrpc/even6/ieventservice/v1"
 	"github.com/oiweiwei/go-msrpc/msrpc/nrpc/logon/v1"
 	"github.com/oiweiwei/go-msrpc/msrpc/well_known"
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/ssp"
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
