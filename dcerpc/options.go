@@ -6,7 +6,7 @@ import (
 	"github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 )
 
 // Option represents the common interface for DCE/RPC options.
