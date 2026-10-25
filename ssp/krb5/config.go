@@ -86,7 +86,11 @@ type Config struct {
 	AnyServiceClassSPN bool
 }
 
-// BitStringReader accepts Kerberos option bitstrings without depending on a\n// particular ASN.1 implementation.\ntype BitStringReader interface { At(int) int }\n\nfunc (c *Config) Accept(ff []byte, apOptions BitStringReader) {
+// BitStringReader accepts Kerberos option bitstrings without depending on a
+// particular ASN.1 implementation.
+type BitStringReader interface { At(int) int }
+
+func (c *Config) Accept(ff []byte, apOptions BitStringReader) {
 	if len(ff) > 24 {
 		c.Flags = append(c.Flags, int(gssapi.Delegation))
 	}
