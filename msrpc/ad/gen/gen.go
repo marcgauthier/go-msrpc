@@ -16,7 +16,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/PuerkitoBio/goquery"
+	goquery "github.com/oiweiwei/go-msrpc/internal/htmlquery"
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 )
 
