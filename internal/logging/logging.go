@@ -8,6 +8,7 @@ import (
     "fmt"
     "io"
     "log/slog"
+    "strings"
     "time"
 )
 
@@ -21,7 +22,18 @@ func New(w io.Writer) Logger {
     if w == nil {
         return Logger{}
     }
-    return Logger{logger: slog.New(slog.NewJSONHandler(w, &slog.HandlerOptions{Level: slog.LevelDebug}))}
+    return Logger{logger: slog.New(slog.NewJSONHandler(w, &slog.HandlerOptions{
+        Level: slog.LevelDebug,
+        ReplaceAttr: func(_ []string, attr slog.Attr) slog.Attr {
+            switch attr.Key {
+            case slog.MessageKey:
+                attr.Key = "message"
+            case slog.LevelKey:
+                attr.Value = slog.StringValue(strings.ToLower(attr.Value.String()))
+            }
+            return attr
+        },
+    }))}
 }
 
 // Context builds a logger with fixed attributes.
