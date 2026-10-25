@@ -4,7 +4,7 @@ import (
 	"bytes"
 
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/chksumtype"
-	"github.com/jcmturner/rpc/v2/mstypes"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/rpc/mstypes"
 )
 
 /*

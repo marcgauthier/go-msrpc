@@ -3,7 +3,7 @@ package pac
 import (
 	"bytes"
 
-	"github.com/jcmturner/rpc/v2/mstypes"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/rpc/mstypes"
 )
 
 // UPNDNSInfo implements https://msdn.microsoft.com/en-us/library/dd240468.aspx

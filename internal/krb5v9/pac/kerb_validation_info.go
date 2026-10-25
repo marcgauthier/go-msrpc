@@ -5,8 +5,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/jcmturner/rpc/v2/mstypes"
-	"github.com/jcmturner/rpc/v2/ndr"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/rpc/mstypes"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/rpc/ndr"
 )
 
 // KERB_VALIDATION_INFO flags.

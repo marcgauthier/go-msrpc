@@ -8,8 +8,8 @@ import (
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/keyusage"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
-	"github.com/jcmturner/rpc/v2/mstypes"
-	"github.com/jcmturner/rpc/v2/ndr"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/rpc/mstypes"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/rpc/ndr"
 )
 
 // https://msdn.microsoft.com/en-us/library/cc237931.aspx

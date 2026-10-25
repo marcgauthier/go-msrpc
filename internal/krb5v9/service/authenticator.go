@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	goidentity "github.com/jcmturner/goidentity/v6"
+	goidentity "github.com/oiweiwei/go-msrpc/internal/krbcompat/goidentity"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/client"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/config"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/credentials"
