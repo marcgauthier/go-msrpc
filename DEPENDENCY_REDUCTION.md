@@ -15,12 +15,24 @@ This fork aims to build with dependencies only from Go (standard library and `go
 
 All changes are under `dependency-internalization`. Source links using `github.com/oiweiwei/go-msrpc` remain because this fork retains the original module path.
 
+## Internalized runtime sources (additional changes)
+
+- `internal/dns`: miekg/dns v1.1.73, BSD-3-Clause. Windows DNS record conversions now use internal DNS types instead of `miekg/dns`.
+- `internal/ber`: geoffgarside/ber v1.1.0, BSD-3-Clause.
+- `internal/smbfork`: oiweiwei/go-smb2.fork v1.0.2, BSD-style; its nested imports point to internal package paths. RPC named pipes now use this implementation.
+- `internal/oem`: oiweiwei/go-oem v1.0.0, MIT; NTLM and Netlogon now use this internal implementation.
+- `internal/ebcdic`: indece-official/go-ebcdic v1.2.0, MIT.
+
+Upstream licenses and attribution are maintained in the internal directories and summarized in `THIRD_PARTY_NOTICES.md`.
+
 ## Outstanding
 
-- **Direct external runtime dependency:** `github.com/miekg/dns`. Windows DNS record conversion in `msrpc/dnsp` currently handles dozens of RR types and exports `dns.RR` in public signatures. Migrating requires API review and round-trip tests for each supported record type.
-- **Transitive dependencies of permitted modules:** These do not disappear when a direct `require` is removed. `github.com/oiweiwei/gokrb5.fork/v9` imports jcmturner, hashicorp and others; `github.com/oiweiwei/go-smb2.fork` uses `github.com/geoffgarside/ber`; `github.com/oiweiwei/go-oem` uses `github.com/indece-official/go-ebcdic`. Fully eliminating external downloads will require modifications to those implementations or carefully scoped module replacements.
-- **API compatibility:** `WithLogger` now expects this fork's `logging.Logger`, not `zerolog.Logger`. Legacy v8 credential types are accepted through `any`/reflection; their original v8-specific static interfaces cannot be identical without retaining v8 imports.
-- **Verification:** CI has been expanded but has not run in the fork. Go 1.26 build, tests, remote Windows RPC, SMB, NTLM and Kerberos interoperability are not yet verified.
+- **Nine non-permitted indirect modules remain declared** in `go.mod`, predominantly from `github.com/oiweiwei/gokrb5.fork/v9`. None are declared as direct dependencies anymore. The complete Go module graph and build outputs must still be checked using `go list -m all` and `go mod tidy`.
+- **Validation and migration:** Run `go test ./...` with Go 1.26, then SMB2/3, DNS, NTLM, SPNEGO and Kerberos interoperability against Windows. The new internal DNS and SMB types and the logger API may break importing programs; test/migrate those call sites.
+- **Code pruning:** The copied DNS and SMB trees still include upstream implementation pieces that may be unused by the RPC library. Prune only after successful build and automated compatibility coverage.
+- **GitHub Actions:** No GitHub Actions workflow run has been observed for the fork. The CI definition now triggers on this branch as well, when GitHub Actions is enabled.
+
+**Status: work in progress; this branch is not verified production-ready.**
 
 ## Completion criteria
 
