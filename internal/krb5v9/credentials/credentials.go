@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/hashicorp/go-uuid"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/uuid"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/nametype"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/keytab"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
