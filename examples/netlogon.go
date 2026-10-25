@@ -12,7 +12,7 @@ import (
 	"github.com/oiweiwei/go-msrpc/dcerpc"
 	"github.com/oiweiwei/go-msrpc/msrpc/epm/epm/v3"
 	"github.com/oiweiwei/go-msrpc/msrpc/nrpc/logon/v1"
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/ssp"
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
