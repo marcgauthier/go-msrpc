@@ -4,7 +4,7 @@ import (
     "fmt"
 
     "github.com/oiweiwei/go-msrpc/internal/krb5compat"
-    "github.com/oiweiwei/gokrb5.fork/v9/keytab"
+    "github.com/oiweiwei/go-msrpc/internal/krb5v9/keytab"
 )
 
 // KeytabV8 is a legacy credential marker. Legacy Keytab() methods are

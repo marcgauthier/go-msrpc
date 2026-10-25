@@ -8,12 +8,12 @@ import (
 
 
 
-	"github.com/oiweiwei/gokrb5.fork/v9/client"
-	"github.com/oiweiwei/gokrb5.fork/v9/config"
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/flags"
-	"github.com/oiweiwei/gokrb5.fork/v9/service"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/client"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/config"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/etypeID"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/flags"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/service"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 
 	"github.com/oiweiwei/go-msrpc/internal/krb5compat"
 	"github.com/oiweiwei/go-msrpc/ssp/credential"

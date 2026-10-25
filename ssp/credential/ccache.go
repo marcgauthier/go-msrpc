@@ -4,7 +4,7 @@ import (
     "fmt"
 
     "github.com/oiweiwei/go-msrpc/internal/krb5compat"
-    "github.com/oiweiwei/gokrb5.fork/v9/credentials"
+    "github.com/oiweiwei/go-msrpc/internal/krb5v9/credentials"
 )
 
 // CCacheV8 is retained as a legacy credential marker. The typed v8 CCache()

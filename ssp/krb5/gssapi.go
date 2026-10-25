@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/flags"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/flags"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )

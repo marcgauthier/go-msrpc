@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/etype"
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/etype"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/etypeID"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 )
 
 type Cipher interface {

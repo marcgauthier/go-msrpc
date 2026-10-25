@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	krb5_config "github.com/oiweiwei/gokrb5.fork/v9/config"
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
+	krb5_config "github.com/oiweiwei/go-msrpc/internal/krb5v9/config"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/etypeID"
 	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
