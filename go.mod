@@ -5,7 +5,6 @@ ignore ./test
 go 1.26.0
 
 require (
-	github.com/miekg/dns v1.1.73
 	github.com/oiweiwei/go-math v1.0.0
 	github.com/oiweiwei/go-oem v1.0.0
 	github.com/oiweiwei/go-smb2.fork v1.0.2
