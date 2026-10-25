@@ -8,7 +8,6 @@ import (
 
 	v8_config "github.com/jcmturner/gokrb5/v8/config"
 
-	"github.com/jcmturner/gofork/encoding/asn1"
 
 	"github.com/oiweiwei/gokrb5.fork/v9/client"
 	"github.com/oiweiwei/gokrb5.fork/v9/config"
@@ -87,7 +86,7 @@ type Config struct {
 	AnyServiceClassSPN bool
 }
 
-func (c *Config) Accept(ff []byte, apOptions asn1.BitString) {
+// BitStringReader accepts Kerberos option bitstrings without depending on a\n// particular ASN.1 implementation.\ntype BitStringReader interface { At(int) int }\n\nfunc (c *Config) Accept(ff []byte, apOptions BitStringReader) {
 	if len(ff) > 24 {
 		c.Flags = append(c.Flags, int(gssapi.Delegation))
 	}
