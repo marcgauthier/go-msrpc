@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/jcmturner/gofork/encoding/asn1"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/asn1"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/asn1tools"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/client"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/gssapi"

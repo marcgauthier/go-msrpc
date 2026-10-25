@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/jcmturner/gofork/encoding/asn1"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/asn1"
 )
 
 // Reference: https://www.ietf.org/rfc/rfc4120.txt

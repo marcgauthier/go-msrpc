@@ -12,8 +12,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/jcmturner/gofork/encoding/asn1"
-	"github.com/jcmturner/goidentity/v6"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/asn1"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/goidentity"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/client"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/credentials"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/gssapi"
