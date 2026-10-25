@@ -6,7 +6,7 @@ import (
 	go_math "math"
 	"sync"
 
-	"github.com/oiweiwei/go-math"
+	"github.com/oiweiwei/go-msrpc/internal/floatmath"
 )
 
 // ChunkedBuffer interface is aimed to provide an interface
