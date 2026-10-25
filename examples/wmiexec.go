@@ -26,7 +26,7 @@ import (
 	"os"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	"github.com/oiweiwei/go-msrpc/msrpc/dcom/iactivation/v0"
