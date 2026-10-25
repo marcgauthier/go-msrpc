@@ -26,7 +26,7 @@ import (
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 	"github.com/oiweiwei/go-msrpc/ssp/ntlm"
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	"github.com/oiweiwei/go-msrpc/msrpc/epm/epm/v3"
