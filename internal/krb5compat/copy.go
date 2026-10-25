@@ -18,7 +18,7 @@ func Copy(dst, src any) error {
         return fmt.Errorf("destination must be a non-nil pointer")
     }
     s := reflect.ValueOf(src)
-    if !s.IsValid() {
+    if !s.IsValid() || ((s.Kind() == reflect.Pointer || s.Kind() == reflect.Interface) && s.IsNil()) {
         return fmt.Errorf("source is nil")
     }
     return copyValue(d.Elem(), s)
