@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	v8_config "github.com/jcmturner/gokrb5/v8/config"
 
 
 	"github.com/oiweiwei/gokrb5.fork/v9/client"
@@ -16,6 +15,7 @@ import (
 	"github.com/oiweiwei/gokrb5.fork/v9/service"
 	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
+	"github.com/oiweiwei/go-msrpc/internal/krb5compat"
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
@@ -137,23 +137,16 @@ func (c *Config) Accept(ff []byte, apOptions BitStringReader) {
 }
 
 func (c *Config) GetKRB5Config() *config.Config {
-
-	switch conf := (any)(c.KRB5Config).(type) {
-	case *config.Config:
-		return conf
-	case *v8_config.Config:
-		realms := make([]config.Realm, len(conf.Realms))
-		for i := range conf.Realms {
-			realms[i] = config.Realm(conf.Realms[i])
-		}
-		return &config.Config{
-			LibDefaults: config.LibDefaults(conf.LibDefaults),
-			Realms:      realms,
-			DomainRealm: (config.DomainRealm)(conf.DomainRealm),
-		}
-	}
-
-	return nil
+    if conf, ok := c.KRB5Config.(*config.Config); ok {
+        return conf
+    }
+    if c.KRB5Config != nil {
+        converted := new(config.Config)
+        if err := krb5compat.Copy(converted, c.KRB5Config); err == nil {
+            return converted
+        }
+    }
+    return nil
 }
 
 func (c *Config) FlagIsSet(f gssapi.Cap) bool {
