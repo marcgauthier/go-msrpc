@@ -1,7 +1,7 @@
 package kadmin
 
 import (
-	"github.com/jcmturner/gofork/encoding/asn1"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/asn1"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 )
 
