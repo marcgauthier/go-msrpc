@@ -13,7 +13,7 @@ import (
 
 	krb5_config "github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
-	zerologzerolog "github.com/oiweiwei/go-msrpc/logging"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
 	"github.com/oiweiwei/go-msrpc/smb2"
