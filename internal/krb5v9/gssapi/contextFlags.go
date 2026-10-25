@@ -1,6 +1,6 @@
 package gssapi
 
-import "github.com/jcmturner/gofork/encoding/asn1"
+import "github.com/oiweiwei/go-msrpc/internal/krbcompat/asn1"
 
 // GSS-API context flags assigned numbers.
 const (

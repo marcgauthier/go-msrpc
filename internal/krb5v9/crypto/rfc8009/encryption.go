@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/jcmturner/aescts/v2"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/aescts"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/common"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/etype"
 	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/etypeID"

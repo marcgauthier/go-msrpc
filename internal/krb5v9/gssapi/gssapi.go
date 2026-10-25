@@ -5,7 +5,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/jcmturner/gofork/encoding/asn1"
+	"github.com/oiweiwei/go-msrpc/internal/krbcompat/asn1"
 )
 
 // GSS-API OID names
