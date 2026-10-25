@@ -24,7 +24,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
 

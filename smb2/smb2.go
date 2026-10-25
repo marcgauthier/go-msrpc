@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
-	"github.com/oiweiwei/go-smb2.fork"
-	"github.com/rs/zerolog"
+	smb2 "github.com/oiweiwei/go-msrpc/internal/smbfork"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 )
 
 type Dialect uint16

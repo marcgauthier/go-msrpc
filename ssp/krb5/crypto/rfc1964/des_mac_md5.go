@@ -6,9 +6,9 @@ import (
 
 	ssp_crypto "github.com/oiweiwei/go-msrpc/ssp/crypto"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/etype"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/etype"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 )
 
 type DesMacMd5 struct {

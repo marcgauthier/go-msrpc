@@ -1,6 +1,9 @@
 package credential
 
-import "strings"
+import (
+    "reflect"
+    "strings"
+)
 
 // Generic credential.
 type Credential interface {
@@ -95,17 +98,32 @@ func NewFromString(s string, opts ...Option) Password {
 	return NewFromPassword(s, "", append(opts, AllowEmptyPassword())...)
 }
 
+// V8ToV9 upgrades a legacy credential implementing CCache() or Keytab().
+// Reflection allows the old method's return type to remain *gokrb5/v8/...
+// in calling applications without requiring a v8 import in this module.
 func V8ToV9(cred Credential) Credential {
+    if cred == nil { return nil }
+    if _, ok := cred.(CCache); ok { return cred }
+    if _, ok := cred.(Keytab); ok { return cred }
 
-	if cred, ok := (any)(cred).(KeytabV8); ok {
-		return NewFromKeytabV8(cred.UserName(), cred.Keytab(),
-			Workstation(cred.Workstation()), Domain(cred.DomainName()))
-	}
+    value := reflect.ValueOf(cred)
+    if value.Kind() == reflect.Pointer && value.IsNil() { return cred }
 
-	if cred, ok := (any)(cred).(CCacheV8); ok {
-		return NewFromCCacheV8(cred.UserName(), cred.CCache(),
-			Workstation(cred.Workstation()), Domain(cred.DomainName()))
-	}
-
-	return cred
+    for _, kind := range []string{"Keytab", "CCache"} {
+        method := value.MethodByName(kind)
+        if !method.IsValid() || method.Type().NumIn() != 0 || method.Type().NumOut() != 1 {
+            continue
+        }
+        result := method.Call(nil)[0]
+        if !result.IsValid() { continue }
+        if (result.Kind() == reflect.Pointer || result.Kind() == reflect.Interface) && result.IsNil() {
+            continue
+        }
+        opts := []Option{Workstation(cred.Workstation()), Domain(cred.DomainName())}
+        if kind == "Keytab" {
+            return NewFromKeytabV8(cred.UserName(), result.Interface(), opts...)
+        }
+        return NewFromCCacheV8(cred.UserName(), result.Interface(), opts...)
+    }
+    return cred
 }

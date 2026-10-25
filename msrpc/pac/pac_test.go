@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/test/testdata"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/test/testdata"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
 

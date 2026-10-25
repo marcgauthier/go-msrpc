@@ -8,7 +8,7 @@ import (
 
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/oiweiwei/go-msrpc/ndr"
-	"github.com/rs/zerolog"
+	zerolog "github.com/oiweiwei/go-msrpc/logging"
 )
 
 // The common header size.

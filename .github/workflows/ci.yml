@@ -3,7 +3,8 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [main, master]
+    branches: [main, master, dependency-internalization]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -15,4 +16,21 @@ jobs:
         with:
           go-version-file: go.mod
 
-      - run: go test ./msrpc/... ./dcerpc/... ./ssp/... ./ndr/... ./smb2/... ./text/... ./midl/... ./config/...
+      - name: Resolve and verify module graph
+        run: |
+          go mod tidy
+          go mod verify
+          go list -m all | awk '
+            NR == 1 { next }
+            $1 ~ /^golang[.]org\// { next }
+            $1 ~ /^google[.]golang[.]org\// { next }
+            $1 ~ /^github[.]com\/oiweiwei\// { next }
+            { print "Forbidden module: " $1; bad = 1 }
+            END { exit bad }'
+          git diff --exit-code -- go.mod go.sum
+
+      - name: Compile and test every package
+        run: go test ./...
+
+      - name: Vet every package
+        run: go vet ./...

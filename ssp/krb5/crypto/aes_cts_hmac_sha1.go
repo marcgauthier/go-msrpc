@@ -10,9 +10,9 @@ import (
 	"hash"
 
 	"github.com/oiweiwei/go-msrpc/ssp/crypto"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/common"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/etype"
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/keyusage"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/common"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/etype"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/keyusage"
 )
 
 var (

@@ -15,7 +15,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/go-xmlfmt/xmlfmt"
+	xmlfmt "github.com/oiweiwei/go-msrpc/internal/xmlfmt"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
 

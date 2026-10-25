@@ -1,7 +1,7 @@
 package dnsp
 
 import (
-	"github.com/miekg/dns"
+	"github.com/oiweiwei/go-msrpc/internal/dns"
 
 	"github.com/oiweiwei/go-msrpc/msrpc/dnsp/record"
 )

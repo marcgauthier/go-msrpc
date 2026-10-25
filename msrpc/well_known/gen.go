@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
-	"gopkg.in/yaml.v3"
+	yaml "github.com/oiweiwei/go-msrpc/internal/wellknownyaml"
 )
 
 var (
@@ -27,15 +27,7 @@ func init() {
 	flag.Parse()
 }
 
-type YAMLEntry struct {
-	UUID        string   `yaml:"uuid"`
-	Domain      string   `yaml:"domain"`
-	Annotation  string   `yaml:"annotation"`
-	IfName      string   `yaml:"if_name"`
-	IfVersions  []string `yaml:"if_versions"`
-	Endpoints   []string `yaml:"endpoints"`
-	Keywords    []string `yaml:"keywords"`
-}
+type YAMLEntry = yaml.Entry
 
 type Descriptor struct {
 	UUID      uuid.UUID

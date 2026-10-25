@@ -6,7 +6,7 @@ import (
 	"net"
 	"strconv"
 
-	"github.com/miekg/dns"
+	"github.com/oiweiwei/go-msrpc/internal/dns"
 )
 
 var (

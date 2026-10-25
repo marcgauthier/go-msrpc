@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/rfc3961"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto/rfc3961"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 )
 
 type DESCipher struct {

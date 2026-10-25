@@ -1,98 +1,69 @@
 package credential
 
 import (
-	"fmt"
+    "fmt"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/keytab"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
-
-	v8_keytab "github.com/jcmturner/gokrb5/v8/keytab"
+    "github.com/oiweiwei/go-msrpc/internal/krb5compat"
+    "github.com/oiweiwei/go-msrpc/internal/krb5v9/keytab"
 )
 
-type KeytabV8 interface {
-	Credential
-	// Keytab.
-	Keytab() *v8_keytab.Keytab
-}
+// KeytabV8 is a legacy credential marker. Legacy Keytab() methods are
+// detected reflectively without importing the gokrb5/v8 module.
+type KeytabV8 interface { Credential }
 
-// Keytab interface defines the Kerberos 5 Keytab credential.
+// Keytab is a Kerberos 5 keytab credential.
 type Keytab interface {
-	Credential
-	// Keytab.
-	Keytab() *keytab.Keytab
+    Credential
+    Keytab() *keytab.Keytab
 }
 
-// keytabCred is the implementation of the Keytab interface.
 type keytabCred struct {
-	userCred
-	// keytab.
-	keytab *keytab.Keytab
-	// keytab error.
-	keytabErr error
+    userCred
+    keytab *keytab.Keytab
+    keytabErr error
 }
 
-// Keytab function returns the Keytab.
 func (cred *keytabCred) Keytab() *keytab.Keytab {
-	if cred != nil {
-		return cred.keytab
-	}
-	return &keytab.Keytab{}
+    if cred != nil { return cred.keytab }
+    return &keytab.Keytab{}
 }
 
-// Validate function validates the Keytab credential.
 func (cred *keytabCred) Validate() error {
-	if cred != nil && cred.keytabErr != nil {
-		return cred.keytabErr
-	}
-	return nil
+    if cred != nil && cred.keytabErr != nil { return cred.keytabErr }
+    return nil
 }
 
-// IsEmpty function returns true if the Keytab credential is empty.
 func (cred *keytabCred) IsEmpty() bool {
-	return cred == nil || cred.keytab == nil || len(cred.keytab.Entries) == 0
+    return cred == nil || cred.keytab == nil || len(cred.keytab.Entries) == 0
 }
 
-// NewFromKeytabFile function creates a new Keytab credential from a keytab file.
 func NewFromKeytabFile(un string, keytabFile string, opts ...Option) Keytab {
-	keytab, err := keytab.Load(keytabFile)
-	if err != nil {
-		return &keytabCred{keytabErr: err}
-	}
-	return NewFromKeytabV9(un, keytab)
+    kt, err := keytab.Load(keytabFile)
+    if err != nil { return &keytabCred{keytabErr: err} }
+    return NewFromKeytabV9(un, kt, opts...)
 }
 
 func NewFromKeytab(un string, ktab any, opts ...Option) Keytab {
-	switch ktab := ktab.(type) {
-	case *keytab.Keytab:
-		return NewFromKeytabV9(un, ktab, opts...)
-	case *v8_keytab.Keytab:
-		return NewFromKeytabV8(un, ktab, opts...)
-	}
-	return &keytabCred{
-		keytabErr: fmt.Errorf("invalid type %T for keytab", ktab),
-	}
+    switch ktab := ktab.(type) {
+    case *keytab.Keytab:
+        return NewFromKeytabV9(un, ktab, opts...)
+    default:
+        return NewFromKeytabV8(un, ktab, opts...)
+    }
 }
 
-// NewFromKeytab function creates a new Keytab credential from a keytab.
-func NewFromKeytabV9(un string, keytab *keytab.Keytab, opts ...Option) Keytab {
-	return &keytabCred{
-		userCred: parseUser(un, opts...),
-		keytab:   keytab,
-	}
+func NewFromKeytabV9(un string, kt *keytab.Keytab, opts ...Option) Keytab {
+    return &keytabCred{userCred: parseUser(un, opts...), keytab: kt}
 }
 
-// NewFromKeytabV8 function creates a new Keytab credential from a keytab from
-// github.com/jcmtruner/gokrb5/v8 library.
-func NewFromKeytabV8(un string, ktv8 *v8_keytab.Keytab, opts ...Option) Keytab {
-	kt := &keytab.Keytab{}
-	for i := range ktv8.Entries {
-		kt.Entries = append(kt.Entries, keytab.Entry{
-			Principal: (keytab.Principal)(ktv8.Entries[i].Principal),
-			Timestamp: ktv8.Entries[i].Timestamp,
-			KVNO8:     ktv8.Entries[i].KVNO8,
-			Key:       (types.EncryptionKey)(ktv8.Entries[i].Key),
-			KVNO:      ktv8.Entries[i].KVNO,
-		})
-	}
-	return NewFromKeytab(un, kt, opts...)
+// NewFromKeytabV8 converts a legacy v8 keytab to v9 without importing v8.
+func NewFromKeytabV8(un string, oldKeytab any, opts ...Option) Keytab {
+    if oldKeytab == nil {
+        return &keytabCred{keytabErr: fmt.Errorf("nil Kerberos keytab")}
+    }
+    kt := new(keytab.Keytab)
+    if err := krb5compat.Copy(kt, oldKeytab); err != nil {
+        return &keytabCred{keytabErr: fmt.Errorf("convert legacy keytab: %w", err)}
+    }
+    return NewFromKeytabV9(un, kt, opts...)
 }

@@ -5,9 +5,9 @@ import (
 	"fmt"
 
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto"
-	"github.com/oiweiwei/gokrb5.fork/v9/iana/keyusage"
-	"github.com/oiweiwei/gokrb5.fork/v9/types"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/crypto"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/iana/keyusage"
+	"github.com/oiweiwei/go-msrpc/internal/krb5v9/types"
 )
 
 func (o *PACCredentialInfo) DecryptCredentialData(key types.EncryptionKey) (*PACCredentialData, error) {

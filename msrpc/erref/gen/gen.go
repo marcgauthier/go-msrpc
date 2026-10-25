@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/PuerkitoBio/goquery"
+	goquery "github.com/oiweiwei/go-msrpc/internal/htmlquery"
 )
 
 var (

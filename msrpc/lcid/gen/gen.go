@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/PuerkitoBio/goquery"
+	goquery "github.com/oiweiwei/go-msrpc/internal/htmlquery"
 )
 
 const defaultURL = "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/63d3d639-7fd2-4afb-abbe-0d5b5551eef8"
