@@ -5,23 +5,20 @@ ignore ./test
 go 1.26.0
 
 require (
-	github.com/PuerkitoBio/goquery v1.13.0
-	github.com/go-xmlfmt/xmlfmt v1.1.3
-	github.com/jcmturner/gofork v1.7.6
 	github.com/jcmturner/gokrb5/v8 v8.4.4
 	github.com/miekg/dns v1.1.73
 	github.com/oiweiwei/go-math v1.0.0
 	github.com/oiweiwei/go-oem v1.0.0
 	github.com/oiweiwei/go-smb2.fork v1.0.2
 	github.com/oiweiwei/gokrb5.fork/v9 v9.0.8
-	github.com/stretchr/testify v1.12.1
 	golang.org/x/crypto v0.58.0
 	golang.org/x/text v0.43.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
-	github.com/andybalholm/cascadia v1.3.4 // indirect
+	github.com/jcmturner/gofork v1.7.6 // indirect
+	github.com/stretchr/testify v1.12.1 // indirect
 	github.com/geoffgarside/ber v1.1.0 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/indece-official/go-ebcdic v1.2.0 // indirect
